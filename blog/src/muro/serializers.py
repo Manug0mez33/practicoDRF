@@ -1,13 +1,31 @@
 from rest_framework import serializers
-from .models import Muro
+from .models import Post, Comentario
 
-class MuroSerializer(serializers.ModelSerializer):
+
+class PostPublicSerializer(serializers.ModelSerializer):
+    comentarios = serializers.StringRelatedField(read_only=True)
+
     class Meta:
-        model = Muro
+        model = Post
+        fields = [
+            'titulo', 
+            'contenido',
+            'comentarios',
+            ]
+
+        read_only_fields = [
+            'id', 
+            'timestamp',
+            ]
+
+class PostSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Post
         fields = [
             'id',
             'titulo', 
-            'contenido', 
+            'contenido',
+            'comentarios',
             'timestamp',
             ]
 
@@ -15,3 +33,33 @@ class MuroSerializer(serializers.ModelSerializer):
             'id', 
             'timestamp',
             ]
+
+class ComentarioSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comentario
+        fields = [
+            'id',
+            'contenido',
+            'timestamp',
+        ]
+        read_only_fields = [
+            'id',
+            'timestamp',
+        ]
+
+class PostNestedSerializer(serializers.ModelSerializer):
+    comentarios = ComentarioSerializer(read_only=True)
+
+    class Meta:
+        model = Post
+        fields = [
+            'id',
+            'titulo', 
+            'contenido',
+            'comentarios',
+            'timestamp',
+        ]
+        read_only_fields = [
+            'id',
+            'timestamp',
+        ]
