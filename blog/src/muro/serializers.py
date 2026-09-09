@@ -34,6 +34,10 @@ class PostSerializer(serializers.ModelSerializer):
             'timestamp',
             ]
 
+        nullable_fields = [
+            'comentarios',
+        ]
+
 class ComentarioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comentario

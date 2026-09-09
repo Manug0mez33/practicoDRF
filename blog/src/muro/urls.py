@@ -1,10 +1,10 @@
 from django.urls import path
 
-from .views import comentario_list, detalle_comentario, post_list, detalle_post
+from .views import PostListCreateAPIView, PostDetailAPIView, ComentarioListCreateAPIView, ComentarioDetailAPIView
 
 urlpatterns = [
-    path('posts/', post_list, name='post_list'),
-    path('posts/<int:pk>/', detalle_post, name='detalle_post'),
-    path('comentarios/', comentario_list, name='comentario_list'),
-    path('comentarios/<int:pk>/', detalle_comentario, name='detalle_comentario'),
+    path('posts/', PostListCreateAPIView.as_view(), name='post_list'),
+    path('posts/<int:pk>/', PostDetailAPIView.as_view(), name='post_detail'),
+    path('comentarios/', ComentarioListCreateAPIView.as_view(), name='comentario_list'),
+    path('comentarios/<int:pk>/', ComentarioDetailAPIView.as_view(), name='comentario_detail'),
 ]
