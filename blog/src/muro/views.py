@@ -1,10 +1,12 @@
 from rest_framework import generics
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
+from muro.permissions import GroupEditPermission
 from .models import Post, Comentario
 from .serializers import PostNestedSerializer, PostPublicSerializer, PostSerializer, ComentarioSerializer
 
 class PostListCreateAPIView(generics.ListCreateAPIView):
     queryset = Post.objects.all().select_related('comentarios')
-    serializer_class = PostNestedSerializer
+    permission_classes = [GroupEditPermission]
 
     def get_serializer_class(self):
         if self.request.method == 'POST':

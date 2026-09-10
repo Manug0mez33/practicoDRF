@@ -1,0 +1,26 @@
+info:
+  name: Registro bruno
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: http://127.0.0.1:8000/api/muro/posts/
+  body:
+    type: json
+    data: |-
+      {
+          "titulo": "No tengo autorizacion",
+          "contenido": "Probando pa"
+      }
+  auth:
+    type: basic
+    username: manu
+    password: "1234"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+​
