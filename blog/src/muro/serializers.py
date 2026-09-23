@@ -62,8 +62,10 @@ class PostNestedSerializer(serializers.ModelSerializer):
             'contenido',
             'comentarios',
             'timestamp',
+            'activo',
         ]
         read_only_fields = [
             'id',
             'timestamp',
+            'activo',
         ]
